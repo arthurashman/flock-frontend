@@ -7,7 +7,8 @@ class CreateTask extends Component {
   constructor() {
     super();
     this.state = {
-      title: ''
+      title: '',
+      subtasks: ''
     };
   }
 
@@ -19,14 +20,16 @@ class CreateTask extends Component {
     e.preventDefault();
 
     const data = {
-      title: this.state.title
+      title: this.state.title,
+      subtasks: this.state.subtasks
     };
 
     axios
       .post('http://localhost:8080/tasks', data)
       .then(res => {
         this.setState({
-          title: ''
+          title: '',
+          subtasks: ''
         })
         this.props.history.push('/');
       })
@@ -57,6 +60,16 @@ class CreateTask extends Component {
                     name='title'
                     className='form-control'
                     value={this.state.title}
+                    onChange={this.onChange}
+                  />
+                </div>
+                <div className='form-group'>
+                  <input
+                    type='text'
+                    placeholder='Subtask'
+                    name='subtasks'
+                    className='form-control'
+                    value={this.state.subtasks}
                     onChange={this.onChange}
                   />
                 </div>

@@ -85,6 +85,17 @@ class UpdateTask extends Component {
               />
             </div>
             <br />
+            <div className='form-group'>
+              <label htmlFor="subtasks">Subtasks</label>
+              <input
+                type='text'
+                placeholder='Subtasks'
+                name='subtasks'
+                className='form-control'
+                value={this.state.subtasks}
+                onChange={this.onChange}
+              />
+            </div>
             <button type="submit" className="btn btn-outline-info btn-lg btn-block">Update Task</button>
             </form>
           </div>

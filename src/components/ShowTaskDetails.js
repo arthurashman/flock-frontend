@@ -17,6 +17,7 @@ class showTaskDetails extends Component {
       .get('http://localhost:8080/tasks/'+this.props.match.params.id)
       .then(res => {
         // console.log("Print-showTaskDetails-API-response: " + res.data);
+        console.log(res.data)
         this.setState({
           task: res.data
         })
@@ -41,6 +42,7 @@ class showTaskDetails extends Component {
   render() {
 
     const task = this.state.task;
+    
     let TaskItem = <div>
       <table className="table table-hover table-dark">
         {/* <thead>
@@ -53,9 +55,10 @@ class showTaskDetails extends Component {
         </thead> */}
         <tbody>
           <tr>
-            <th scope="row">1</th>
-            <td>Title</td>
-            <td>{ task.title }</td>
+            <td>Task: { task.title }</td>
+          </tr>
+          <tr>
+            <td> Completed: { String(task.completed) }</td>
           </tr>
           {/* list out subtasks here? */}
         </tbody>
