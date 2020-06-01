@@ -9,7 +9,7 @@ import CreateTask from './components/CreateTask';
 
 class App extends Component {
   state = {
-    tasks: ["item"],
+    tasks: [],
     selectedTask: [],
     toDoList: ["Sort the laundry"],
     toDoListView: true,
@@ -32,8 +32,9 @@ class App extends Component {
   };
 
   manageTasksHandler = () => {
-    this.setState({toDoListView: !this.state.toDoListView})
-    this.setState({manageTasksView: !this.state.manageTasksView})
+    this.setState({taskView: false})
+    this.setState({toDoListView: false})
+    this.setState({manageTasksView: true})
   }
 
   showTaskHandler = (id) => {
@@ -50,6 +51,10 @@ class App extends Component {
     this.setState({taskView: !this.state.taskView})
   }
   
+  toDoHandler = () => {
+    this.setState({manageTasksView: !this.state.manageTasksView})
+    this.setState({toDoListView: !this.state.toDoListView})
+  }
 
   render() {
     let manageTasksPage = null
@@ -82,6 +87,7 @@ class App extends Component {
     if (this.state.manageTasksView) {
       manageTasksPage = (
         <div>
+           <button onClick={this.toDoHandler}>Back</button>
           <h1>Manage tasks</h1>
           {this.state.tasks.map((task, index) => {
             return <TaskCard
@@ -101,7 +107,8 @@ class App extends Component {
     if (this.state.taskView) {
       taskPage =(
         <div> 
-          <h1>Task page</h1>
+          <button onClick={this.manageTasksHandler}>Back</button>
+          <h1>Task</h1>
           <h2>{this.state.selectedTask.title}</h2>
         </div>
         )
