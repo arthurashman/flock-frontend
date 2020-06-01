@@ -12,7 +12,7 @@ class showTaskDetails extends Component {
   }
 
   componentDidMount() {
-    // console.log("Print id: " + this.props.match.params.id);
+    console.log("Print id: " + this.props.match.params.id);
     axios
       .get('http://localhost:8080/tasks/'+this.props.match.params.id)
       .then(res => {

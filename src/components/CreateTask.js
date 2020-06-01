@@ -8,16 +8,21 @@ class CreateTask extends Component {
     super();
     this.state = {
       title: '',
-      subtasks: ''
+      subtasks: '',
+      id: ''
     };
   }
 
-  onChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+  onChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
   };
 
-  onSubmit = e => {
-    e.preventDefault();
+  onConfirm = event => {
+
+  }
+
+  onSubmit = event => {
+    event.preventDefault();
 
     const data = {
       title: this.state.title,
@@ -40,48 +45,24 @@ class CreateTask extends Component {
   render() {
     return (
       <div className="CreateTask">
-        <div className="container">
           <div className="row">
-            <div className="col-md-8 m-auto">
-              <br />
-              <Link to="/" className="btn btn-outline-warning float-left">
-                Show Task List
-              </Link>
-            </div>
-            <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Add Task</h1>
-              <p className="lead text-center"> Create new task</p>
-
-              <form noValidate onSubmit={this.onSubmit}>
-                <div className='form-group'>
+            <div className="col-md-8">
+              <h1>Add a new task</h1>
+              <form noValidate onSubmit={this.onSubmit} class="form-inline">
                   <input
                     type='text'
                     placeholder='Task name'
                     name='title'
-                    className='form-control'
                     value={this.state.title}
                     onChange={this.onChange}
                   />
-                </div>
-                <div className='form-group'>
-                  <input
-                    type='text'
-                    placeholder='Subtask'
-                    name='subtasks'
-                    className='form-control'
-                    value={this.state.subtasks}
-                    onChange={this.onChange}
-                  />
-                </div>
                 <input 
                   type="submit"
-                  className="btn btn-outline-warning btn-block mt-4"
                 />
               </form>
             </div>
           </div>
         </div>
-      </div>
     )
   }
 }

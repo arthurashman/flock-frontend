@@ -28,10 +28,10 @@ class ShowTaskList extends Component {
 
   render() {
     const tasks = this.state.tasks;
-    console.log("PrintTask: " + tasks);
+    // console.log("PrintTask: " + tasks);
     let taskList;
 
-    if(!tasks) {
+    if(tasks.length === 0) {
       taskList = "There are no tasks set yet";
     } else {
       taskList = tasks.map((task, k) =>
