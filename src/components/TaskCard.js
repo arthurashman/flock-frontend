@@ -1,17 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import '../App.css';
 
 const TaskCard = (props) => {
-  return(
-    <div className="card-container">
+  return (
+    <div className="card" style={{marginBottom: 15, cursor: "pointer"}} onClick={props.showTask}>
         <div className="desc">
             <div>
-              <h3 onClick={props.showTask}>{ props.title }</h3>
-              <ul>
-                <li>{props.subtasks}</li>
-                <li>completed: {props.completed}</li>
-              </ul>
+              <h3 style = {{ marginTop : 10 }}onClick={props.showTask}>{ props.title }</h3>
+              {props.subtasks}
+              <br></br>
+              <br></br>
             </div>
             {/* Iterate through subtasks here? */}
         </div>

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 
-import TaskCard from './components/TaskCard';
-import CreateTask from './components/CreateTask';
+import ManageTasksPage from './components/ManageTasksPage';
+import ToDoPage from './components/ToDoPage';
+import TaskPage from './components/TaskPage';
 
 class App extends Component {
   state = {
@@ -62,56 +62,22 @@ class App extends Component {
     let toDoPage = null
 
     if(this.state.toDoListView) {
-      if(this.state.toDoList.length < 1){
-        toDoPage = (
-          <div>
-            <h1>Todo</h1>
-            <h3>You have nothing on your list</h3>
-            <button onClick={this.manageTasksHandler}>Manage Tasks</button>
-          </div>
-        )
-      }
-
-      if(this.state.toDoList.length > 0) {
-        toDoPage = (
-          <div>
-            <h1>Todo</h1>
-            <h3>Next up:</h3>
-            <h3>{this.state.toDoList[0]}</h3>
-            <button onClick={this.manageTasksHandler}>Manage Tasks</button>
-          </div>
-        )
-      }
+      toDoPage = <ToDoPage
+      toDoList={this.state.toDoList}
+      manageTasks={() => this.manageTasksHandler()}/>
     }
 
     if (this.state.manageTasksView) {
-      manageTasksPage = (
-        <div>
-           <button onClick={this.toDoHandler}>Back</button>
-          <h1>Manage tasks</h1>
-          {this.state.tasks.map((task, index) => {
-            return <TaskCard
-            title={task.title}
-            subtasks={task.subtasks}
-            completed={String(task.completed)}
-            key={task._id}
-            showTask={() => this.showTaskHandler(task._id)}/>
-          })}      
-          <Router>
-            <CreateTask />
-          </Router>
-        </div>
-      )
+      manageTasksPage = <ManageTasksPage 
+      tasks={this.state.tasks}
+      toDo={() => this.toDoHandler()}
+      showTask={() => this.showTaskHandler()}/>
     }
 
     if (this.state.taskView) {
-      taskPage =(
-        <div> 
-          <button onClick={this.manageTasksHandler}>Back</button>
-          <h1>Task</h1>
-          <h2>{this.state.selectedTask.title}</h2>
-        </div>
-        )
+      taskPage = <TaskPage 
+      manageTasks={() => this.manageTasksHandler()}
+      task={this.state.selectedTask}/>     
     }
 
     return (
@@ -121,7 +87,6 @@ class App extends Component {
           {toDoPage}        
         </div>
     );
-  
   }
 }  
 

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios';
 
@@ -45,8 +44,6 @@ class CreateTask extends Component {
   render() {
     return (
       <div className="CreateTask">
-          <div className="row">
-            <div className="col-md-8">
               <h1>Add a new task</h1>
               <form noValidate onSubmit={this.onSubmit} class="form-inline">
                   <input
@@ -56,13 +53,12 @@ class CreateTask extends Component {
                     value={this.state.title}
                     onChange={this.onChange}
                   />
-                <input 
+                <input style={{cursor: "pointer"}} 
                   type="submit"
                 />
               </form>
             </div>
-          </div>
-        </div>
+      
     )
   }
 }
